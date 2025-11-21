@@ -9,8 +9,8 @@ API_KEY = os.environ.get("GEMINI_API_KEY")
 OUTPUT_DIR = Path("generated")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-GEMINI_MODEL = "gemini-2.5-image"  # placeholder; replace if your provider uses another
-GEMINI_ENDPOINT = "https://api.example.com/v1/generate"  # REPLACE with your real Gemini endpoint
+GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 
 def build_prompt():
     return (
