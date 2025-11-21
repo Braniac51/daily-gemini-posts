@@ -1,1 +1,3 @@
-requests python-dotenv Pillow
+requests
+python-dotenv
+Pillow
