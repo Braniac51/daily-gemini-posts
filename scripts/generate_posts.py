@@ -21,9 +21,35 @@ def build_prompt():
     )
 
 def call_gemini(prompt):
+    # Get the key safely from GitHub
+    gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    
+    if not gemini_api_key:
+        print("Error: GEMINI_API_KEY not found.")
+        raise ValueError("Missing API Key")
+
+    # The Correct Gemini 1.5 Flash Endpoint
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_api_key}"
+
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
+    }
+    
+    data = {
+        "contents": [{
+            "parts": [{"text": prompt}]
+        }]
+    }
+
+    # Send the request
+    response = requests.post(url, headers=headers, json=data)
+    
+    # If there is an error, this will print the details so we can see them
+    if response.status_code != 200:
+        print(f"Error from Google: {response.text}")
+        
+    response.raise_for_status()
+    return response.json()
     }
     payload = {
         "model": GEMINI_MODEL,
