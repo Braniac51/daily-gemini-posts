@@ -50,16 +50,8 @@ def call_gemini(prompt):
         
     response.raise_for_status()
     return response.json()
-    }
-    payload = {
-        "model": GEMINI_MODEL,
-        "prompt": prompt,
-        "max_tokens": 1200,
-        "temperature": 0.8,
-    }
-    resp = requests.post(GEMINI_ENDPOINT, headers=headers, json=payload, timeout=180)
-    resp.raise_for_status()
-    return resp.json()
+    
+    
 
 def parse_response(resp):
     # Try several common shapes; adapt if your provider returns a different structure
