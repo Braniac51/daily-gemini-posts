@@ -9,8 +9,8 @@ API_KEY = os.environ.get("GEMINI_API_KEY")
 OUTPUT_DIR = Path("generated")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-GEMINI_MODEL = "gemini-1.5-flash"
-GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent"
 
 def build_prompt():
     return (
@@ -28,8 +28,8 @@ def call_gemini(prompt):
         print("Error: GEMINI_API_KEY not found.")
         raise ValueError("Missing API Key")
 
-    # The Correct Gemini 1.5 Flash Endpoint
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_api_key}"
+    # The Correct Gemini 2.5 Flash Endpoint (Updated from 1.5-flash and v1beta)
+    url = f"https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key={gemini_api_key}"
 
     headers = {
         "Content-Type": "application/json"
